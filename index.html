@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMDB Real API Platformasi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. ASOSIY BOSH SAHIFA -->
+  <div id="main-page" class="page-block active">
+    <div class="tmdb-wrapper">
+      
+      <!-- Trendlar Bo'limi -->
+      <section class="tmdb-section">
+        <div class="section-column">
+          <div class="column-header">
+            <h2>Trendda</h2>
+            <div class="selector-wrap">
+              <div class="selector">
+                <div class="anchor active" id="trend-today">Bugun</div>
+                <div class="anchor" id="trend-week">Bu hafta</div>
+              </div>
+            </div>
+          </div>
+          <div class="media-container">
+            <div class="media-scroller" id="trend-scroller"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Eng oxirgi treylerlar Bo'limi -->
+      <section class="tmdb-section video-section">
+        <div class="section-column">
+          <div class="column-header white-text">
+            <h2>Eng oxirgi treylerlar</h2>
+            <div class="selector-wrap video-selector">
+              <div class="selector">
+                <div class="anchor active" id="trailer-popular">Popular</div>
+                <div class="anchor" id="trailer-theaters">Kinoteatrlarda</div>
+              </div>
+            </div>
+          </div>
+          <div class="media-container">
+            <div class="media-scroller" id="video-scroller"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ommabop Bo'limi -->
+      <section class="tmdb-section">
+        <div class="section-column">
+          <div class="column-header">
+            <h2>Ommabop</h2>
+            <div class="selector-wrap">
+              <div class="selector">
+                <div class="anchor active" id="pop-tv">Televideniyeda</div>
+                <div class="anchor" id="pop-movie">Kinoteatrlarda</div>
+              </div>
+            </div>
+          </div>
+          <div class="media-container">
+            <div class="media-scroller" id="popular-scroller"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- 2. FILMLAR DETAL SAHIFASI (User tanlaganda ochiladi) -->
+  <div id="detail-page" class="page-block">
+    <div class="back-nav">
+      <button onclick="backToMain()">← Bosh sahifaga qaytish</button>
+    </div>
+
+    <!-- Yuqori qism (Banner va ma'lumotlar) -->
+    <div id="movie-banner" class="movie-banner-section">
+      <div class="banner-overlay"></div>
+      <div class="detail-wrapper banner-content">
+        <div class="detail-poster">
+          <img id="detail-img" src="" alt="">
+        </div>
+        <div class="detail-main-info">
+          <h1 id="detail-title"></h1>
+          <div class="movie-meta-row">
+            <span class="rating-badge" id="detail-score">0%</span>
+            <span class="meta-item" id="detail-date"></span>
+            <span class="meta-item" id="detail-genres"></span>
+          </div>
+          
+          <div class="action-buttons">
+            <button class="action-btn">☰</button>
+            <button class="action-btn">❤</button>
+            <button class="action-btn">🔖</button>
+            <button class="play-tr-btn">▶ Play Trailer</button>
+          </div>
+
+          <div class="overview-section">
+            <p class="tagline" id="detail-tagline"></p>
+            <h3>Overview</h3>
+            <p id="detail-desc"></p>
+            
+            <div class="crew-grid">
+              <div>
+                <strong id="detail-director">-</strong>
+                <p>Director</p>
+              </div>
+              <div>
+                <strong id="detail-writer">-</strong>
+                <p>Writer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pastki qism (Bosh rollarda va Yon panel) -->
+    <div class="detail-wrapper bottom-details">
+      <div class="cast-column">
+        <h2>Bosh rollarda</h2>
+        <div class="cast-scroller" id="cast-container"></div>
+      </div>
+      
+      <div class="sidebar-column">
+        <button class="watch-now-full">Watch Now <span>Outcome on Apple TV</span></button>
+        <div class="social-links"><span>🌐</span> <span>🕊️</span> <span>📸</span></div>
+        <div class="info-meta-block">
+          <h4>Status</h4>
+          <p>Chiqarilgan / Real Ma'lumot</p>
+        </div>
+        <div class="info-meta-block">
+          <h4>Original Til</h4>
+          <p id="detail-lang">-</p>
+        </div>
+        <div class="info-meta-block">
+          <h4>Byudjet</h4>
+          <p id="detail-budget">-</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

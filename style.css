@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-color: #032541;
+  --secondary-color: #1ed5a9;
+  --bg-color: #fff;
+  --text-dark: #000;
+  --text-light: rgba(0, 0, 0, 0.6);
+  --card-width: 150px;
+  --video-card-width: 300px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  overflow-x: hidden;
+}
+
+.page-block {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.page-block.active {
+  display: block;
+  opacity: 1;
+}
+
+.tmdb-wrapper, .detail-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 30px 40px;
+}
+
+.tmdb-section {
+  margin-bottom: 35px;
+  width: 100%;
+}
+
+/* HEADERS */
+.column-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.column-header h2 { font-size: 24px; font-weight: 600; color: #000; }
+.column-header.white-text h2 { color: #fff; }
+
+.selector-wrap { border: 1px solid var(--primary-color); border-radius: 30px; display: inline-flex; }
+.video-selector { border-color: var(--secondary-color); }
+.selector { display: flex; background-color: #fff; border-radius: 30px; overflow: hidden; }
+.video-selector .selector { background-color: transparent; }
+
+.anchor {
+  padding: 4px 20px; font-weight: 600; font-size: 15px; cursor: pointer;
+  border-radius: 30px; color: var(--primary-color); transition: all 0.2s; white-space: nowrap;
+}
+.video-selector .anchor { color: #fff; }
+.anchor.active { background-color: var(--primary-color); color: var(--secondary-color); }
+.video-selector .anchor.active {
+  background: linear-gradient(to right, #c0fecf, var(--secondary-color)); color: var(--primary-color);
+}
+
+/* SCROLLERS & CARDS */
+.media-container { position: relative; width: 100%; }
+.media-container::after {
+  content: ''; width: 60px; height: 100%; position: absolute; top: 0; right: 0;
+  background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 100%); pointer-events: none; z-index: 2;
+}
+.video-section .media-container::after {
+  background-image: linear-gradient(to right, rgba(3,37,65,0) 0%, var(--primary-color) 100%);
+}
+
+.media-scroller { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 10px; scroll-behavior: smooth; }
+.media-scroller::-webkit-scrollbar { height: 8px; }
+.media-scroller::-webkit-scrollbar-thumb { background-color: #dbdbdb; border-radius: 10px; }
+.video-section .media-scroller::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.2); }
+
+.card { width: var(--card-width); min-width: var(--card-width); flex-shrink: 0; cursor: pointer; }
+.image-wrap { width: 100%; height: 225px; position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+.opt-btn {
+  position: absolute; top: 8px; right: 8px; width: 24px; height: 24px;
+  background: rgba(255, 255, 255, 0.8); border-radius: 50%; border: none; font-weight: bold; font-size: 10px;
+  display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;
+}
+.card:hover .opt-btn { opacity: 1; }
+
+.info-wrap { padding: 10px 0 0 0; }
+.info-wrap h3 { font-size: 15px; font-weight: 700; color: #000; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.info-wrap p { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+
+/* TREYLERLAR (VIDEO SEKSIYASI) */
+.video-section {
+  background-image: url('https://www.themoviedb.org/assets/2/v4/misc/trending-bg-39aa0e871e2fa761519777596d7ade01931b22a4a28f9051fde22edd103c4658.svg');
+  background-color: var(--primary-color); background-position: center bottom; background-size: cover;
+  padding: 30px 40px; margin-left: -40px; margin-right: -40px; width: calc(100% + 80px);
+}
+.video-card { width: var(--video-card-width); min-width: var(--video-card-width); }
+.video-card .image-wrap { height: 168px; }
+.play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 32px; color: #fff; pointer-events: none; }
+
+/* DETAIL PAGE */
+.back-nav { background-color: #021a2e; padding: 10px 40px; }
+.back-nav button { background: transparent; border: none; color: var(--secondary-color); font-size: 16px; font-weight: 600; cursor: pointer; }
+
+.movie-banner-section { position: relative; background-size: cover; background-position: center; color: #fff; width: 100%; }
+.banner-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to right, rgba(3, 37, 65, 0.95) 0%, rgba(3, 37, 65, 0.82) 100%); z-index: 1;
+}
+.banner-content { position: relative; z-index: 2; display: flex; gap: 40px; padding-top: 40px; padding-bottom: 40px; }
+.detail-poster { width: 300px; min-width: 300px; height: 450px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+.detail-poster img { width: 100%; height: 100%; object-fit: cover; }
+
+.detail-main-info { display: flex; flex-direction: column; justify-content: center; }
+.detail-main-info h1 { font-size: 34px; font-weight: 700; margin-bottom: 5px; }
+.detail-main-info h1 span { font-weight: 300; opacity: 0.7; }
+
+.movie-meta-row { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+.rating-badge { background-color: #081c22; color: #fff; font-weight: 700; padding: 7px; border-radius: 50%; border: 3px solid var(--secondary-color); font-size: 13px; }
+.meta-item { font-size: 15px; opacity: 0.9; }
+
+.action-buttons { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.action-btn { width: 42px; height: 42px; border-radius: 50%; background-color: #032541; border: none; color: #fff; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.play-tr-btn { background: transparent; border: none; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; }
+
+.overview-section .tagline { font-style: italic; opacity: 0.7; font-size: 17px; margin-bottom: 12px; }
+.overview-section h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+.overview-section #detail-desc { font-size: 15px; line-height: 1.6; opacity: 0.9; margin-bottom: 25px; }
+.crew-grid { display: flex; gap: 50px; }
+
+/* BOTTOM GRID */
+.bottom-details { display: flex; gap: 40px; margin-top: 20px; }
+.cast-column { flex: 1; overflow: hidden; }
+.cast-column h2 { font-size: 21px; margin-bottom: 15px; }
+
+.cast-scroller { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; }
+.cast-card { width: 130px; min-width: 130px; background: #fff; border: 1px solid #e3e3e3; border-radius: 8px; overflow: hidden; }
+.cast-img { width: 100%; height: 175px; object-fit: cover; }
+.cast-info { padding: 8px; }
+.cast-info h4 { font-size: 14px; color: #000; }
+.cast-info p { font-size: 12px; color: #555; }
+
+.sidebar-column { width: 260px; min-width: 260px; display: flex; flex-direction: column; gap: 20px; }
+.watch-now-full { background-color: #01b4e4; color: #fff; border: none; padding: 12px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; text-align: center; }
+.watch-now-full span { font-size: 11px; opacity: 0.8; font-weight: 400; }
+.info-meta-block h4 { font-size: 15px; font-weight: 600; }
+.info-meta-block p { font-size: 14px; color: #333; }
+
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+  .banner-content { flex-direction: column; align-items: center; text-align: center; }
+  .detail-poster { width: 180px; min-width: 180px; height: 270px; }
+  .movie-meta-row, .action-buttons, .crew-grid { justify-content: center; }
+  .bottom-details { flex-direction: column; }
+  .sidebar-column { width: 100%; }
+}
+@media screen and (max-width: 480px) {
+  .column-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .tmdb-wrapper, .detail-wrapper { padding: 15px; }
+  :root { var(--card-width): 130px; }
+}
