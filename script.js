@@ -1,8 +1,7 @@
 // TMDB API bilan ishlash sozlamalari
-const API_KEY = 'b7ca309087c9dfbfad7cf20e8b4e85ef'; // Haqiqiy ishchi kalit
-const BASE_URL = 'https://api.themoviedb.org/3';
-const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
-const BACKDROP_URL = 'https://image.tmdb.org/t/p/original';
+  const API_KEY = "ed1c56f1";
+const BASE_URL = "https://www.omdbapi.com";
+
 
 // 1. API-DAN MA'LUMOTLARNI YUKLASH FUNKSIYASI
 async function fetchMovies(endpoint, containerId, isVideo = false) {
